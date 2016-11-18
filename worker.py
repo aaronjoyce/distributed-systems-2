@@ -1,4 +1,5 @@
 import threading
+import socket
 
 class Worker(threading.Thread):
 	def __init__(self, host, port, socket, buffer_size=1024, chat_room=None):
@@ -15,7 +16,6 @@ class Worker(threading.Thread):
 		 	if not received:
 		 		break
 		   	else:
-		   		print "Message received: " + received
-		   		self.socket.sendall(received)
+		   		if received.strip() == "HELO text":
+		   			self.socket.sendall("HELO text\nIP:{0}\nPort:{1}\nStudentID:{2}\n".format(self.host, self.port, 12326755))
     		# Wait for communication
-
