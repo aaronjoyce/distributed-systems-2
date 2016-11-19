@@ -26,7 +26,8 @@ class WorkerPool:
 				# connect.
 				# At this point, we receive the data, getting
 				# the name of the chatroom specified
-				worker = Worker(addr[0], addr[1], conn)
+				print addr
+				worker = Worker(self.host, self.port, conn)
 				worker.start()
 				self.thread_pool.append(worker)
 			else:

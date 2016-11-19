@@ -13,9 +13,13 @@ class Worker(threading.Thread):
 	def run(self):
    		while not self.exit:
 		  	received = self.socket.recv(self.buffer_size)
+			print "received: " + received
 		 	if not received:
 		 		break
 		   	else:
-		   		if received.strip() == "HELO text":
-		   			self.socket.sendall("HELO text\nIP:{0}\nPort:{1}\nStudentID:{2}\n".format(self.host, self.port, 12326755))
+		   		if "helo" in received.strip().lower():
+		   			self.socket.sendall("{0}\nIP:{1}\nPort:{2}\nStudentID:{3}\n".format(received.strip(), self.host, self.port, 12326755))
+				elif "kill_service" in received.strip().lower():
+					self.socket.close()
+					self.exit = True
     		# Wait for communication

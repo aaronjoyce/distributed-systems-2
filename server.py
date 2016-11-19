@@ -5,7 +5,7 @@ from worker_pool import WorkerPool
 
 
 def main():
-	worker_pool = WorkerPool('localhost', 8080)
+	worker_pool = WorkerPool('134.226.32.10', 8226)
 	worker_pool.run()
 
 if __name__ == "__main__":

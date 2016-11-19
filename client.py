@@ -38,7 +38,7 @@ s = socket.socket(
 
 
 CRLF = "\r\n\r\n"
-s.connect((host, port))
+s.connect(('134.226.32.10', 8221))
 s.send("%s %s" % ("HELO text\n", CRLF))
 while True:
   	received = s.recv(BUFFER_SIZE)
